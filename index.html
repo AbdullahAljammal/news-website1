@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global News Network</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* Custom styles for the homepage */
+        :root {
+            --primary-color: #0056b3;
+            --secondary-color: #343a40;
+            --accent-color: #f8f9fa;
+            --text-light: #6c757d;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #9da8b3;
+        }
+
+
+        .breaking {
+            background-color: #dc3545;
+            color: white;
+            padding: 0.5rem 1rem;
+            font-weight: bold;
+        }
+        .breaking-news {
+            background-color: #dc3545;
+            color: white;
+            padding: 0.5rem 1rem;
+            font-weight: bold;
+        }
+
+        .hero-section {
+            position: relative;
+            height: 500px;
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.7);
+        }
+
+        .hero-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 2rem;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: white;
+        }
+
+        .hero-content h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .card {
+            border: none;
+            box-shadow: 0 0 10px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            height: 100%;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .card-img-top {
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .card-body {
+            padding: 1.25rem;
+        }
+
+        .card-category {
+    
+            display: inline-block;
+            background-color: #fff6f6;
+            color: var(--text-light);
+            padding: 0.2rem 0.5rem;
+            border-radius: 3px;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+        }
+
+        .card-text {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+     
+        .trending-item {
+            display: flex;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .trending-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #e9ecef;
+            margin-right: 1rem;
+        }
+
+        .trending-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 5px;
+            object-fit: cover;
+            margin-right: 1rem;
+        }
+
+        .trending-content h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .trending-meta {
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        footer {
+            background-color: #343a40;
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links a {
+            color: #adb5bd;
+            text-decoration: none;
+        }
+        #load-more-top-stories,
+#load-more-trending {
+    display: block !important; /* Force visibility */
+    margin: 20px auto; /* Add some margin for spacing */
+    
+}
+#load-more-trending{
+    position: relative;
+    left:26%;
+}
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background-color: rgba(255,255,255,0.1);
+            color: white;
+            transition: background-color 0.3s;
+        }
+
+        .social-links a:hover {
+            background-color: var(--primary-color);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 3rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            color: #adb5bd;
+        }
+
+        /* Ensure buttons are visible by default */
+       
+    </style>
+</head>
+<body>
+    <!-- Top bar with date and trending topics -->
+    <header>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container">
+                <a class="navbar-brand" href="#">
+                    <img src="news-logo.png" alt="Global News Network" class="d-inline-block align-text-top">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav ms-auto">
+                        <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                        <a class="nav-link" href="politics.html">politics</a>
+                                                <a class="nav-link" href="sports.html">Sports</a>
+                        <a class="nav-link" href="technology.html">Technology</a>
+                        <a class="nav-link" href="wether.html">weather</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    
+
+    <!-- Breaking news banner -->
+    <div class="breaking-news">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <span class="me-2">BREAKING:</span>
+                    <span id="breaking-news-text">Loading  news...</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main class="container my-4">
+        <!-- Hero section with featured article -->
+        <div class="hero-section">
+            <img src="newslogo.jpg" alt="Top story" class="hero-image">
+            <div class="hero-content">
+                <h1>Global News</h1>
+            </div>
+        </div>
+
+        <!-- Top stories section -->
+        <div class="section-title">
+            <h2>Top Stories</h2>
+        </div>
+
+        <div class="row mb-4" id="top-stories">
+            <!-- Top stories will be loaded here -->
+        </div>
+
+        <!-- "Load More" button for top stories -->
+        <div class="text-center mb-4">
+            <button id="load-more-top-stories" class="btn btn-primary">Load More</button>
+        </div>
+        
+
+        <!-- Trending now section -->
+        <div class="row mb-4">
+            <div class="col-lg-8">
+                <div class="section-title">
+                    <h2>Trending Now</h2>
+                </div>
+
+                <div id="trending-list">
+                    <!-- Trending stories will be loaded here -->
+                </div>
+
+                <!-- "Load More" button for trending news -->
+                <div class="text-center mb-4">
+                    <button id="load-more-trending" class="btn btn-primary">Load More</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="chat-container collapsed" id="chat-container">
+        <div class="chat-header" onclick="toggleChat()">
+            <span><i class="-comment-dots me-2"></i> Explore facts</span>
+            <i class="-chevron-up" id="chat-toggle-icon"></i>
+        </div>
+        <div id="chat-box">
+            <!-- Chat messages will appear here -->
+        </div>
+        <div class="chat-input">
+            <input type="text" id="user-input" placeholder="Type your message..." />
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container"> 
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h5 class="footer-title">About Us</h5>
+                    <p>Global News Network delivers the latest breaking news and information on the latest top stories, business, entertainment, politics, and more.</p>
+                    <div class="social-links mt-3">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-md-2 mb-4">
+                    <h5 class="footer-title">Categories</h5>
+                    <ul class="footer-links">
+                        <li><a href="arab-news.html">Arab News</a></li>
+                        <li><a href="sports.html">Sports</a></li>
+                        <li><a href="technology.html">Technology</a></li>
+                        <li><a href="weather.html">Weather</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-4 mb-4">
+                    <h5 class="footer-title">Contact Us</h5>
+                    <p><i class="fas fa-map-marker-alt me-2"></i> 123 News Street, New York, NY 10001</p>
+                    <p><i class="fas fa-phone me-2"></i> (123) 456-7890</p>
+                    <p><i class="fas fa-envelope me-2"></i> info@globalnews.com</p>
+                </div>
+            </div>
+
+            <div class="copyright">
+                &copy; 2025 Global News Network. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    <script>
+const apiKey = "68afaf87-c809-4cf0-bdaf-674387374a0d"; // The Guardian API Key
+let topStoriesPage = 1; 
+let trendingNewsPage = 1;
+
+// Function to fetch news from The Guardian API
+async function fetchNews(url) {
+    try {
+        const response = await fetch(url);
+        if (!response.ok) throw new Error(`API Error: ${response.status}`);
+        const data = await response.json();
+        return data.response.results || [];
+    } catch (error) {
+        console.error("Error fetching news:", error);
+        return [];
+    }
+}
+
+// Function to load top stories from The Guardian API
+async function loadTopStories(page = 1) {
+    const url = `https://content.guardianapis.com/search?section=world&show-fields=thumbnail,trailText&page=${page}&page-size=6&api-key=${apiKey}`;
+    const articles = await fetchNews(url);
+    const storiesContainer = document.getElementById('top-stories');
+
+    if (page === 1) {
+        storiesContainer.innerHTML = ''; // Clear the container on first load
+    }
+
+    storiesContainer.innerHTML += articles.map(article => 
+        `<div class="col-lg-4 col-md-6 mb-4">
+            <div class="card">
+                <img src="news-image.jpg" class="card-img-top" alt="${article.webTitle}">
+                <div class="card-body">
+                    <span class="card-category">The Guardian</span>
+                    <h6><a href="${article.webUrl}" target="_blank">${article.webTitle}</a></h6>
+                    <p class="card-text">${article.fields?.trailText || ''}</p>
+                    <div class="card-meta">
+                        <span><i class="far fa-clock"></i> ${new Date(article.webPublicationDate).toLocaleDateString()}</span>
+                    </div>
+                </div>
+            </div>
+        </div>`
+    ).join('');
+
+    // Show or hide the "Load More" button
+    const loadMoreTopStoriesButton = document.getElementById('load-more-top-stories');
+    loadMoreTopStoriesButton.style.display = articles.length < 6 ? 'none' : 'block';
+}
+
+// Function to load trending news (using "most viewed" as a proxy)
+async function loadTrendingNews(page = 2) {
+    const url = `https://content.guardianapis.com/search?q=trending&show-fields=thumbnail,trailText&page=${page}&page-size=6&api-key=${apiKey}`;
+    const articles = await fetchNews(url);
+    const trendingContainer = document.getElementById('trending-list');
+
+    if (page === 1) {
+        trendingContainer.innerHTML = ''; // Clear the container on first load
+    }
+
+    trendingContainer.innerHTML += articles.map((article, index) => 
+        `<div class="trending-item">
+            <div class="trending-number">${index + 1}</div>
+            <img src="news-image.jpg" class="trending-image" alt="${article.webTitle}">
+            <div class="trending-content">
+                <h3><a href="${article.webUrl}" target="_blank">${article.webTitle}</a></h3>
+                <div class="trending-meta">
+                    <span><i class="far fa-clock"></i> ${new Date(article.webPublicationDate).toLocaleDateString()}</span>
+                </div>
+            </div>
+        </div>`
+    ).join('');
+
+    // Show or hide the "Load More" button
+    const loadMoreTrendingButton = document.getElementById('load-more-trending');
+    loadMoreTrendingButton.style.display = articles.length < 6 ? 'none' : 'block';
+}
+
+// Function to load breaking news (latest headlines)
+async function updateBreakingNews() {
+    const url = `https://content.guardianapis.com/search?order-by=newest&show-fields=trailText&page-size=1&api-key=${apiKey}`;
+    const articles = await fetchNews(url);
+    
+    if (articles.length > 0) {
+        document.getElementById('breaking-news-text').innerHTML = 
+            `<a class='breaking' href="${articles[0].webUrl}" target="_blank">${articles[0].webTitle}</a>`;
+    } else {
+        document.getElementById('breaking-news-text').innerHTML = "No breaking news available.";
+    }
+}
+
+// Load news when the page loads
+document.addEventListener('DOMContentLoaded', () => {
+    loadTopStories();
+    loadTrendingNews();
+    updateBreakingNews();
+    setInterval(updateBreakingNews, 300000); // Update breaking news every 5 minutes
+});
+
+// "Load More" functionality for top stories
+document.getElementById('load-more-top-stories').addEventListener('click', () => {
+    topStoriesPage++;
+    loadTopStories(topStoriesPage);
+});
+
+// "Load More" functionality for trending news
+document.getElementById('load-more-trending').addEventListener('click', () => {
+    trendingNewsPage++;
+    loadTrendingNews(trendingNewsPage);
+});
+
+// Chat functions remain unchanged
+async function sendMessage() {
+    const apiKey = "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"; // Hugging Face API Key
+    const userInput = document.getElementById("user-input").value;
+    if (!userInput) return;
+
+    const chatBox = document.getElementById("chat-box");
+    chatBox.innerHTML += `<p><strong>You:</strong> ${userInput}</p>`;
+    document.getElementById("user-input").value = "";
+
+    try {
+        const response = await fetch("https://api-inference.huggingface.co/models/facebook/blenderbot-400M-distill", {
+            method: "POST",
+            headers: {
+                "Authorization": `Bearer ${apiKey}`,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ inputs: userInput, options: { wait_for_model: true } })
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(`API Error: ${response.status} - ${response.statusText}`);
+        }
+
+        const data = await response.json();
+        const botReply = data[0]?.generated_text || "Sorry, I couldn't process that.";
+        chatBox.innerHTML += `<p><strong>Bot:</strong> ${botReply}</p>`;
+        chatBox.scrollTop = chatBox.scrollHeight;
+    } catch (error) {
+        console.error("Error:", error);
+        chatBox.innerHTML += `<p><strong>Bot:</strong> Oops! API error: ${error.message}</p>`;
+    }
+}
+
+// Function to toggle chat container
+function toggleChat() {
+    const chatContainer = document.getElementById('chat-container');
+    const chatToggleIcon = document.getElementById('chat-toggle-icon');
+
+    if (chatContainer.classList.contains('collapsed')) {
+        chatContainer.classList.remove('collapsed');
+    } else {
+        chatContainer.classList.add('collapsed');
+    }
+}
+    </script>
+</body>
+</html>
