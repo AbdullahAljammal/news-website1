@@ -54,6 +54,3 @@ This project features a JavaScript function that fetches news articles and weath
 - News articles are loaded dynamically, and users can like, comment, and view additional articles by clicking the "Load More" button.
 - Weather information is fetched based on the city entered by the user in the weather input box.
 
-## License
-
-This project is open source and available under the [MIT License](LICENSE).
